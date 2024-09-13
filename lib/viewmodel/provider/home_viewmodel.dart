@@ -5,10 +5,12 @@ import 'package:user_hub/repository/home_repository.dart';
 
 class HomeViewmodel extends ChangeNotifier {
   final repo = HomeRepository();
-  List<UserModel> userList = <UserModel>[];
+  List<UserModel> userList = [];
+
   int _currenteight = 50;
-  Status _status = Status.loading;
   int get currenteight => _currenteight;
+
+  Status _status = Status.loading;
   Status get status => _status;
 
   void changeHeight(int height) {

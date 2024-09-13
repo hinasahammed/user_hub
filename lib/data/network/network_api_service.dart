@@ -20,12 +20,11 @@ class NetworkApiService extends BaseApiService {
   @override
   Future getApi(String url) async {
     try {
-      final response = await http
-          .get(Uri.parse(url))
-          .timeout(const Duration(seconds: 20));
+      final response =
+          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 20));
       return returnResponse(response);
     } on SocketException {
-      throw InternetException();
+      throw InternetException('No internet');
     } catch (e) {
       print(e.toString());
     }
