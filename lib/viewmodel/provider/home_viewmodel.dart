@@ -7,19 +7,27 @@ class HomeViewmodel extends ChangeNotifier {
   final repo = HomeRepository();
   List<UserModel> userList = [];
 
-  int _currenteight = 50;
-  int get currenteight => _currenteight;
+  int _currentHeight = 50;
+  int get currentHeight => _currentHeight;
 
   Status _status = Status.loading;
   Status get status => _status;
 
+  int? _hoveredIndex; 
+  int? get hoveredIndex => _hoveredIndex;
+
   void changeHeight(int height) {
-    _currenteight = height;
+    _currentHeight = height;
     notifyListeners();
   }
 
   void changeStatus(Status status) {
     _status = status;
+    notifyListeners();
+  }
+
+   void setHoveredIndex(int? index) {
+    _hoveredIndex = index;
     notifyListeners();
   }
 
