@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:user_hub/model/user_model/user_model.dart';
+import 'package:user_hub/res/components/simmer_effect.dart';
 import 'package:user_hub/view/user_details_view.dart';
 import 'package:user_hub/viewmodel/provider/home_viewmodel.dart';
 
@@ -19,8 +20,12 @@ class HomeView extends StatelessWidget {
           future: HomeViewmodel().fetchUser(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return ListView.builder(
+                padding: const EdgeInsets.all(16),
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return const ShimmerList();
+                },
               );
             } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
               return ListView.builder(
